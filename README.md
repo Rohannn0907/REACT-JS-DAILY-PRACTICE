@@ -320,3 +320,23 @@ Component call Without passing props:
 
      // Output → Hello, Alice!
 ```
+
+## 13. What is Synthetic Event ? :
+
+1. A synthetic event in React is a cross-browser wrapper around the browser's native event object.
+2. React normalizes events so they behave identically across all browsers.
+3. Instead of getting a raw MouseEvent or keyboardEvent from the DOM,you get a SyntheticEvent object that has the same interface (preventDefault(),stop propagation(), target,currentTarget,etc)but works consistently everywhere.
+
+## 14. What is Virtual DOM?
+
+1. The Virtual DOM(VDOM) is a lightweight,in-memory JavaScript representation (a tree of JavaScript object)of the Real DOM.
+2. Instead of updating the Real DOM every time something changes,React maintains a virtual copy of it in memory.
+3. React uses it to create a new tree on every re-render and then compares it with the previous one to optimize DOM updates.
+
+## 15. What is Reconcilliation?
+
+Reconcilliation is the process React uses to figure out how to efficiently update the DOM(Document Object Model) when changes occur in the UI.
+
+## 16. What is Diffing Algorithm?
+
+Diffing Algorithm is React's heuristic-based [O(n)] comparison algorithm that efficiently finds differences between the new and the old Virtual DOM trees.
