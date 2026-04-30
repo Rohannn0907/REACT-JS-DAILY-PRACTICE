@@ -44,7 +44,7 @@
 - ## Local package installation:
   - npm install axios : axios package ka naam hai
 - ## Temporary installation : for runner tool and scaffolding tool
-  - npx nodemon ya npmx create-vite@latest : krke kuch likhte hai npx se temporary installation hoti hai vite jo bundler hai uska or fir vite folder structure create krke deta hai react ka hamare current folder mei
+  - npx nodemon ya npx create-vite@latest : krke kuch likhte hai npx se temporary installation hoti hai vite jo bundler hai uska or fir vite folder structure create krke deta hai react ka hamare current folder mei
   - npx full form: node package executor
   - create-vite is a scaffolding package that creates a basic folder structure.
 
