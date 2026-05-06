@@ -90,6 +90,9 @@
 - read from claude: script type='module'
   <br> <br> <br>
 
+- for React router dom installation:
+  npm install react-router-dom
+
 # INTERVIEW QUESTION:
 
 ## 1. Why react?
@@ -341,7 +344,7 @@ Reconcilliation is the process React uses to figure out how to efficiently updat
 
 Diffing Algorithm is React's heuristic-based [O(n)] comparison algorithm that efficiently finds differences between the new and the old Virtual DOM trees.
 
-# 17. What is Render Phase?
+## 17. What is Render Phase?
 
 The Render Phase is the first phase of React’s reconciliation process. During this phase, React invokes the component functions (or render() method in class components), creates a new Virtual DOM tree, and performs diffing to determine the minimal set of changes needed to update the UI.
 
@@ -349,7 +352,7 @@ The Render Phase is the first phase of React’s reconciliation process. During 
 - React may pause, abort, or restart this phase multiple times (due to concurrent rendering in React 18+).
 - No DOM mutations or side effects should occur here.
 
-# 18. What is Commit Phase?
+## 18. What is Commit Phase?
 
 The Commit Phase is the second and final phase of React’s reconciliation process. In this phase, React applies the calculated changes (mutations) to the real DOM in a single, synchronous batch.
 
@@ -358,12 +361,12 @@ The Commit Phase is the second and final phase of React’s reconciliation proce
   - useLayoutEffect() (before browser paint)
   - useEffect() (after browser paint)
 
-# 19. what is State?
+## 19. what is State?
 
 - State in React is an internal, mutable data structure that represents the dynamic data of a component.
 - whenever state variable changes react will re-render the component.
 
-# 20. Difference between state and props?
+## 20. Difference between state and props?
 
 ### props
 
@@ -379,7 +382,7 @@ The Commit Phase is the second and final phase of React’s reconciliation proce
 3. The component that declares it can directly read or update it.
 4. State Update Triggers Re-render
 
-# 21. What is Hooks?
+## 21. What is Hooks?
 
 - Hooks are special built-in functions in React that allow you to use state and other React features (like lifecycle methods, context, refs, etc.) in functional components.
 
@@ -390,7 +393,7 @@ The Commit Phase is the second and final phase of React’s reconciliation proce
 - Hooks Start with "use"
 - Enable Better Code Reuse
 
-# 22. What is useState Hook?
+## 22. What is useState Hook?
 
 1. "useState is a built-in React Hook that allows you to add and manage local state in functional components.
 2. It returns an array with two elements: the current state value and a function to update that state."
@@ -405,17 +408,17 @@ const [state, setState] = useState(initialValue);
 - setState → Function used to update the state
 - initialValue → Initial value of the state (can be number, string, boolean, object, array, etc.)
 
-# 23. What is Batching?
+## 23. What is Batching?
 
 - Batching in React is the process where React groups multiple state updates into a single re-render instead of re-rendering the component after every individual state update.
 - This improves performance by reducing unnecessary re-renders.
 
-# 24. what is conditional Rendering?
+## 24. what is conditional Rendering?
 
 - Conditional Rendering in React is the technique of rendering different UI elements or components based on certain conditions.
 - Here we use if-else, ternary operator and logical operator(short circuit operator).
 
-# 25. can we write function as an initial value in useState(fn) Lazy Initialization?
+## 25. can we write function as an initial value in useState(fn) Lazy Initialization?
 
 - "Lazy Initialization in useState is a technique where we pass a function as the initial value to useState. React calls this function only once during the initial render of the component and uses its return value as the initial state.
 - This is useful for expensive computations that should not run on every re-render."
@@ -427,4 +430,103 @@ const [state, setState] = useState(() => {
   // This function runs ONLY ONCE during initial render
   return expensiveComputation();
 });
+```
+
+## 26. What is useEffect?
+
+The useEffect hook is a built-in React function that allows you to perform side efects in a functional components.
+Side effects are operations that interact with systems outside of React's (like api call).
+
+### Different Methods in which useEffect can be written based on purpose or usecase.
+
+1. No dependency array- runs after every render
+
+```
+useEffect(()=>{
+  console.log("runs after every render")
+});
+
+```
+
+2. Empty dependency array -runs once on mount
+
+```
+useEffect(()=>{
+  console.log("runs once,like componentDidMount")'
+},[]);
+
+```
+
+3. With dependencies - runs when those values change
+
+```
+useEffect(()=>{
+  console.log("runs when count or name changes");
+},[count,name]);
+
+```
+
+## 27. Difference between useState and useEffect Hook?
+
+### useState:
+
+- Used to add and manage state (data) in functional components.
+- Returns an array with 2 values :[currentState, setState]
+- Updating state with setState() triggers a re-render of the component.
+- Preserves value between re-renders.
+
+### useEffect:
+
+- Used to perform side effects (actions outside normal rendering).
+- Runs after the component renders (and after paint in most cases).
+- Common uses: data fetching,DOM manipulation,subscriptions, timers,event listeners.
+- The useEffect hook itself does not return any value (it returns undefined).
+
+## 28. (vvimp interview ques) What is React lifecycle methods in Function Based Component?
+
+```
+  Every React component goes through 3 phases in its life:
+
+      MOUNT -> UPDATE -> UNMOUNT
+      (born)  (changes)   (dies)
+
+```
+
+### Phase 1: MOUNTING
+
+- Component is created and inserted into the DOM for the first time.
+- On Mounting phase useEffect Runs only once after component is added to DOM.
+
+```
+useEffect(()=>{
+console.log("runs once.like componentDidMount");
+},[]);
+
+```
+
+### Phase 2: Updating
+
+- Component re-renders due to state or prop changes.
+- On updating Phase useEffect runs when a specific value changes.
+
+```
+useEffect(()=>{
+  console.log("runs when count or name changes");
+},[count,name]);
+```
+
+### Phase 3:Unmounting
+
+- Component is removed from the DOM.
+- useEffect cleanup function will be called in this phase.
+
+```
+useEffect(()=>{
+  console.log("runs when count or name changes");
+
+  return ()=>{
+    console.log("Cleanup function");  //This cleanup function will be called
+  }
+},[]);
+
 ```
