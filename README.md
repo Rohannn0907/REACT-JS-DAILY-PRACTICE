@@ -343,6 +343,10 @@ Reconcilliation is the process React uses to figure out how to efficiently updat
 ## 16. What is Diffing Algorithm?
 
 Diffing Algorithm is React's heuristic-based [O(n)] comparison algorithm that efficiently finds differences between the new and the old Virtual DOM trees.
+It is a subset/component of reconciliation — not the same thing.
+It answers one precise question:
+
+"Given the old Virtual DOM tree and the new Virtual DOM tree, what is the minimum set of operations needed to transform one into the other?"
 
 ## 17. What is Render Phase?
 
