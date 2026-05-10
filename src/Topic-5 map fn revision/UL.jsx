@@ -7,7 +7,9 @@ const UL = () => {
   return (
     <ul>
       {skills.map((element, index) => (
-        <List key={index} name={element} />
+        <List key={index} name={element} />     //! key here is a special attribute used by React when we try to console this it's value we get undefined
+
+
       ))}
     </ul>
   );

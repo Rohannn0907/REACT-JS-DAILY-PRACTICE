@@ -9,7 +9,8 @@ const Counter = () => {
     const handleClick=()=>{
         console.log('Clicked');
         setCount(count+1);         //? jab jab ye updater function call hoga tab tab ye react ko inform krega ki is component ko dobara call kro matlb rerender karo
-    }
+        setCount((prev)=>prev+1)   //! best way to write. in case multile setCount
+      }
   return (
     <div id="counter">
     <h1>Count:{count}</h1>

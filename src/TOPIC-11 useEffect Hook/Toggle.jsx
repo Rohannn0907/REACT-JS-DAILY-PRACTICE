@@ -4,9 +4,10 @@ const Toggle = () => {
     const [login, setLogin] = useState(false);
     const [count, setCount] = useState(0);
 
-    // useEffect(()=>{console.log('2. useEffect')},[]);                 //!Only one time run hoga ui banne ke baad. because new Dep:[] pre dep: null 
-    // useEffect(()=>{console.log('2. useEffect')});                    //!Jitni baar component  rerender hoga tab tab execute hoga
-    // useEffect(()=>{console.log('2. useEffect')},[count]);               //!useEffect kewal count ke change hone par or first time render hone par hi execute hoga
+    //? Different methods for writing useEffect
+    // useEffect(()=>{console.log('2. useEffect')},[]);        /         //! empty dependency: Only one time run hoga ui banne ke baad(after rendering phase). because new Dep:[] pre dep: null 
+    // useEffect(()=>{console.log('2. useEffect')});                    //! no dependecny :Jitni baar component  rerender hoga tab tab execute hoga
+    // useEffect(()=>{console.log('2. useEffect')},[count]);               //! with dependecies: useEffect kewal count ke change hone par or first time render hone par hi execute hoga
     
     useEffect(()=>{                                                     //! manually handle kra ki first time render par na  ho execute kewal count ke change hone pr hi ho
         if(count==0)
