@@ -570,6 +570,11 @@ React Router DOM is a popular library for client-side routing in React applicati
 
 A function introduced in React Router v6.4+ that creates a router instance using the History API. It is the recommended way to define routes as it supports data APIs like loaders, actions, and fetchers.
 
+
+**HISTORY API**:
+History API (Browser's Native API)
+The History API is a browser feature (window.history) that allows JavaScript to manipulate the browser's session history without triggering a full page reload.
+
 ### BrowserRouter:
 
 A component that wraps your app and enables client-side routing using the History API. It does not support React Router v6.4+ data APIs like loaders and actions.
