@@ -1,18 +1,17 @@
 import React from 'react'
-import {Navigate, useNavigate, Outlet} from "react-router-dom"
+import { Navigate, useNavigate, Outlet } from "react-router-dom"
 
 /**
  * ! 1st way
  */
 const ProtectedRoute = () => {
-    const login = true;
+  const login = true;
 
-    if(!login)
-    {
-        return <Navigate to="/login" replace />
-    }
+  if (!login) {
+    return <Navigate to="/signup" replace />
+  }
 
-  return <Outlet/>
+  return <Outlet />
 }
 
 export default ProtectedRoute

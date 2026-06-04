@@ -3,7 +3,7 @@
 // import "./index.css"
 
 // createRoot(document.getElementById("root")).render(
- 
+
 //   <App/>
 // )
 
@@ -83,15 +83,18 @@ import NotFound from "./Topic 14.1 React Routing (Dynamic Route)/pages/NotFound"
 import ProductPage from "./Topic 14.1 React Routing (Dynamic Route)/pages/ProductPage";
 
 // auth pages
-import Login from "./Topic 14.1 React Routing (Dynamic Route)/pages/Login";
-
+import Signup from "./Topic 14.1 React Routing (Dynamic Route)/pages/Signup";
 // Routes
 import ProtectedRoute from "./Topic 14.1 React Routing (Dynamic Route)/routes/ProtectedRoute";
+// API 
+import { getUserProfile, handleSignup } from "./Topic 14.1 React Routing (Dynamic Route)/services/api";
+import ErrorPage from "./Topic 14.1 React Routing (Dynamic Route)/pages/ErrorPage";
+
 // Routing configuration
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
       {
         index: true,
@@ -103,6 +106,8 @@ const appRouter = createBrowserRouter([
           {
             path: "profile",
             element: <Profile />,
+            loader: getUserProfile,
+            errorElement: <ErrorPage />
           },
           {
             path: "shop",
@@ -121,8 +126,10 @@ const appRouter = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/signup",
+    element: <Signup />,
+    // action: handleSignup, {requires backend so for learning purpose only here}
+    errorElement: <ErrorPage />
   },
   {
     path: "*",
