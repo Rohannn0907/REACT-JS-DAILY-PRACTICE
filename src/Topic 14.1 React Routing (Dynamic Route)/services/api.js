@@ -20,6 +20,8 @@ export const handleSignup = async ({ request }) => {
         password: form.get("password")
     }
 
+    console.log(user.fullname);
+    console.log(user.email);
     const response = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: {

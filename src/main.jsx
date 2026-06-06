@@ -71,9 +71,9 @@
 
 import { createRoot } from "react-dom/client";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
 
-// pages
+// pages`
 import App from "./App";
 import Home from "./Topic 14.1 React Routing (Dynamic Route)/pages/Home";
 import Profile from "./Topic 14.1 React Routing (Dynamic Route)/pages/Profile";
@@ -89,6 +89,7 @@ import ProtectedRoute from "./Topic 14.1 React Routing (Dynamic Route)/routes/Pr
 // API 
 import { getUserProfile, handleSignup } from "./Topic 14.1 React Routing (Dynamic Route)/services/api";
 import ErrorPage from "./Topic 14.1 React Routing (Dynamic Route)/pages/ErrorPage";
+import Login from "./Topic 14.1 React Routing (Dynamic Route)/pages/Login";
 
 // Routing configuration
 const appRouter = createBrowserRouter([
@@ -138,5 +139,20 @@ const appRouter = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={appRouter} />,
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} >
+        <Route index element={<Home />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="order" element={<Order />} />
+        </Route>
+        <Route path="products/:productId" element={<ProductPage />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
 );
