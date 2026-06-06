@@ -1,15 +1,46 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom";
+// import React from "react";
+// import { useOutletContext } from "react-router-dom";
+
+// const Order = () => {
+//   const context = useOutletContext();
+//   console.log("context in Order:", context);
+
+//   return (
+//     <div id="order">
+//       <h1>Welcome to Order Page</h1>
+//     </div>
+//   );
+// };
+
+// export default Order;
+
+import { useState, useMemo, useCallback } from "react";
+import Child from "../components/Child";
 
 const Order = () => {
-  const context = useOutletContext();
-  console.log("context in Order:", context);
+  const [count, setCount] = useState(0); // count = 0
+  console.log("Parent Render")
+
+  const greet = useCallback(() => console.log("Hello useCallback"), []); // greet = 01x1
+
+  const user = useMemo(() => ({ fullname: "Chombu Singh", age: 24 }), []);     // user = 01y1
+
 
   return (
     <div id="order">
-      <h1>Welcome to Order Page</h1>
+      <div className="center-box">
+        <h2>Count: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Add Count</button>
+
+        <Child greet={greet} user={user} />
+      </div>
     </div>
   );
 };
 
 export default Order;
+
+
+
+{/* <Order/>
+<Order/> */}
