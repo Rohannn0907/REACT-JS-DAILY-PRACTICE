@@ -570,7 +570,6 @@ React Router DOM is a popular library for client-side routing in React applicati
 
 A function introduced in React Router v6.4+ that creates a router instance using the History API. It is the recommended way to define routes as it supports data APIs like loaders, actions, and fetchers.
 
-
 **HISTORY API**:
 History API (Browser's Native API)
 The History API is a browser feature (window.history) that allows JavaScript to manipulate the browser's session history without triggering a full page reload.
@@ -850,3 +849,108 @@ app.use(cors([
 ]));
 
 ```
+
+## 55. What is useActionData Hook?
+
+useActionData is a React Router hook that returns the data returned by the most recently executed action function of the current route.
+
+```
+// Action function (returns data instead of redirecting)
+export const handleSignup = async ({ request }) => {
+    const form = await request.formData();
+    const user = {
+        email: form.get("email"),
+        password: form.get("password")
+    };
+
+    const response = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user)
+    });
+
+    if (!response.ok) {
+        const err = await response.json();
+        return { error: err.message }; // returned, not thrown
+    }
+
+    return redirect("/dashboard");
+};
+```
+
+```
+// Component consuming action data
+import { useActionData } from "react-router-dom";
+
+const Signup = () => {
+    const data = useActionData();
+
+    return (
+        <Form method="post">
+            <input name="email" type="email" />
+            <input name="password" type="password" />
+            {data?.error && <p>{data.error}</p>}
+            <button type="submit">Register</button>
+        </Form>
+    );
+};
+```
+
+## 56. Difference between useState and useRef ?
+
+1. Purpose:
+
+```
+useState: Used to manage state that affects the UI (reactive state).
+useRef: Used to store mutable values that persist across renders.
+```
+
+2. Re-rendering:
+
+```
+useState: Updating state causes the component to re-render.
+useRef: Updating ref.current does not cause re-render.
+```
+
+3. Syntax:
+
+```
+useState: const [value, setValue] = useState(initialValue)
+useRef: const ref = useRef(initialValue)
+```
+
+4. Access & Update:
+
+```
+useState: Update using setValue(newValue)
+useRef: Update directly ref.current = newValue
+```
+
+5. Use Cases:
+
+```
+useState: Form inputs, counters, toggles, fetched data, UI-dependent values.
+useRef: DOM references (focus, scroll), previous value tracking, timers, mutable flags.
+```
+
+6. Performance:
+
+```
+useState: Can be expensive due to re-renders on every update.
+useRef: Lightweight, no re-renders.
+```
+
+7. When to Use:
+
+```
+Use useState when you want the UI to update when value changes.
+Use useRef when you just need to "remember" a value without UI update.
+```
+
+## 57. Difference between Controlled Form and Uncontrolled Form?
+
+**Controlled:** React controls the form using state + value + onChange.
+Controlled needs more code but gives better control & validation.
+
+**Uncontrolled:** DOM controls the form (using defaultValue or ref).
+Uncontrolled is simpler and faster but harder to validate.

@@ -71,7 +71,7 @@
 
 import { createRoot } from "react-dom/client";
 import "./App.css";
-import { BrowserRouter, createBrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // pages`
 import App from "./App";
@@ -129,8 +129,12 @@ const appRouter = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
-    // action: handleSignup, {requires backend so for learning purpose only here}
+    action: handleSignup, // {requires backend so for learning purpose only here}
     errorElement: <ErrorPage />
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "*",
@@ -139,20 +143,24 @@ const appRouter = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} >
-        <Route index element={<Home />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="profile" element={<Profile />} />
-          <Route path="shop" element={<Shop />} />
-          <Route path="order" element={<Order />} />
-        </Route>
-        <Route path="products/:productId" element={<ProductPage />} />
-      </Route>
-      <Route path="/login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
+  <RouterProvider router={appRouter} />,
 );
+
+// createRoot(document.getElementById("root")).render(
+//   <BrowserRouter>
+//     <Routes>
+//       <Route path="/" element={<App />} >
+//         <Route index element={<Home />} />
+//         <Route element={<ProtectedRoute />}>
+//           <Route path="profile" element={<Profile />} />
+//           <Route path="shop" element={<Shop />} />
+//           <Route path="order" element={<Order />} />
+//         </Route>
+//         <Route path="products/:productId" element={<ProductPage />} />
+//       </Route>
+//       <Route path="/login" element={<Login />} />
+//       <Route path="signup" element={<Signup />} />
+//       <Route path="*" element={<NotFound />} />
+//     </Routes>
+//   </BrowserRouter>
+// );
