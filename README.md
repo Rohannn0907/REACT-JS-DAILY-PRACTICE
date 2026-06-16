@@ -954,3 +954,87 @@ Controlled needs more code but gives better control & validation.
 
 **Uncontrolled:** DOM controls the form (using defaultValue or ref).
 Uncontrolled is simpler and faster but harder to validate.
+
+## 58. What is Context API?
+
+- Context API is a built-in feature in React that allows you to share data (state, functions, etc.) across multiple components without passing props manually at every level
+- It solves the prop drilling problem.
+
+## 59. How Context API Works?
+
+1. **Create Context** – Using React.createContext()
+2. **Provide Context** – Wrap components with a Provider
+3. **Consume Context** – Access the value using useContext() hook in FBC (or Consumer in class components), In class based component we use **consumer** to take values from the store.
+
+## 60. What is Redux Tool Kit?
+
+- Redux Toolkit is the official, modern, and recommended state management library by the Redux team to write Redux logic in a much simpler and efficient way.
+- It was created to solve the main problem of traditional Redux — too much boilerplate code.
+
+## 61. What is Store in RTK?
+
+- The Store is the central container that holds the entire state of your application.
+- It is the single source of truth for all global data.
+- the store is created using **configureStore()**
+
+## 62. What is slice in RTK?
+
+- A Slice is like a mini-reducer that contains its own name,state, actions, and reducers for a specific part of your application.
+- It is created using createSlice() function.
+- Instead of writing separate files for actions, action types, and reducers (like in old Redux), you write everything in one slice file.
+
+## 63. What is actions in RTK?
+
+- An Action is a plain JavaScript object with a type (what happened) and an optional payload (data).
+
+- In RTK, actions are automatically generated from the reducers you define inside createSlice.
+
+**syntax**
+
+```
+   { type: "cart/addItem", payload: {id: 1, name: "Lays"}}
+```
+
+## 64. What is Reducer in RTK?
+
+A Reducer is a pure function that takes the current state and an action, and returns the new state.
+
+## 65. What is useDispatch Hook?
+
+useDispatch is a React Redux hook that gives you access to the dispatch function. It is used to send actions to the Redux store to update the state.
+**syntax**
+
+```
+   const dipatch = useDispatch();
+```
+
+## 66. What is useSelector Hook?
+
+- useSelector is a React Redux hook that allows you to read data from the Redux store (state) inside your components.
+- useSelector is used to subscribe(make in sync) your component to the Redux Store.
+  **syntax**
+
+```
+const count = useSelector((state) => state.counter.value);
+```
+
+## 67. What is Lifting Up State?
+
+When two or more components need to share the same state, instead of keeping the state in each child, you lift (move) the state up to their closest common parent. The parent manages the state and passes it down as props.
+
+## 68. Why Do We Lift State Up?
+
+- To share data between sibling components.
+- To avoid duplicating state.
+- To keep data flow predictable (one-way data flow).
+
+## 69. What is useLocation in React Router Dom?
+
+- useLocation Hook is a built-in hook provided by React Router.
+- It returns the current location object, which contains information about the current URL.
+
+## 70. How useLocation and useNavigate works together? (Simple Flow)
+
+1. You call navigate(path, { state: data }) in one component.
+2. React Router updates the URL and saves the state.
+3. In the new component, you call useLocation() to access location.state.
